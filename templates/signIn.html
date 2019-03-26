@@ -114,7 +114,7 @@ alert('{{msg}}')
 <body>
 <div class="login-page">
   <div class="form">
-    <form class="register-form" id="Regform">
+    <form class="register-form" action="/postsignup/" method="POST" id="Regform">
     {% csrf_token %}
       <input name="name" type="text" placeholder="Name"/>
       <input name="email" type="text" placeholder="Email"/>

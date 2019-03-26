@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import auth
+from dashboard import views as d_views
 import pyrebase
 
 config = {
@@ -13,6 +14,7 @@ config = {
 
 firebase = pyrebase.initialize_app(config)
 authentication = firebase.auth()
+db = firebase.database()
 
 def signIn(request):
     return render(request, 'signIn.html')
@@ -21,6 +23,7 @@ def postsignIn(request):
 
     email = request.POST.get('email')
     pwd = request.POST.get('password')
+
     try:
         user = authentication.sign_in_with_email_and_password(email, pwd)
     except:
@@ -29,13 +32,28 @@ def postsignIn(request):
     
     session_id = user['idToken']
     request.session['uid'] = str(session_id)
-    return render(request, 'welcome.html', {"email":email})
+
+
+    return redirect('dashboard/')
 
 def postsignup(request):
+
     name = request.POST.get('name')
     email = request.POST.get('email')
     pwd = request.POST.get('password')
     contact = request.POST.get('contact')
+
+    user = authentication.create_user_with_email_and_password(email, pwd)
+    uid = user["localId"]
+    print(uid)
+    data = {
+        "Name": name,
+        "Contact": contact
+    }
+
+    db.child("users").child(uid).child("details").set(data)
+
+    return render(request, 'signIn.html')
 
 def logout(request):
     auth.logout(request)
