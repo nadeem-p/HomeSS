@@ -34,7 +34,7 @@ def postsignIn(request):
     request.session['uid'] = str(session_id)
 
 
-    return redirect('dashboard/')
+    return redirect('Dash-home')
 
 def postsignup(request):
 

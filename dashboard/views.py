@@ -19,10 +19,13 @@ def home(request):
     idToken  = request.session['uid']
     user = authentication.get_account_info(idToken)
     userid = user['users'][0]['localId']
-    data = db.child("users").child(userid).child("CurrentDetails").get()
+    print(userid)
+    data = db.child("users").child(userid).child("CurrentReading").get()
+    print(dict(data.val()))
+    data = dict(data.val())
     return render(request, 'dashboard.html', data)
 
 def profile(request):
     # need to add context dictionary for user data
     
-    return render(request, 'profile.html', )
+    return render(request, 'profile.html')
