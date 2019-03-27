@@ -8,6 +8,13 @@ alert('{{msg}}')
 <html>
 <head>
 	<title>Log In</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<style type="text/css">
 		@import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
@@ -113,25 +120,32 @@ alert('{{msg}}')
 </head>
 <body>
 <div class="login-page">
-  <div class="form">
-    <form class="register-form" action="/postsignup/" method="POST" id="Regform">
-    {% csrf_token %}
-      <input name="name" type="text" placeholder="Name"/>
-      <input name="email" type="text" placeholder="Email"/>
-      <input name="password" type="password" placeholder="Password"/>
-      <input name="contact" type="text" placeholder="Contact"/>
-      <button type="submit" form="Regform">Sign Up</button>
-      <p class="message">Already registered? <a href="javascript:displayLogin()">Sign In</a></p>
-    </form>
-    <form class="login-form" action="/postsignIn/" method="POST" id="LoginForm">
-    {% csrf_token %}
-      <input type="email" placeholder="Email" name="email"/>
-      <input type="password" placeholder="Password" name="password"/>
+	<div class="form">
+		{% if messages %}
+		<div class="row" style="padding: 15px;">
+				{% for message in messages %}
+				<p{% if message.tags == "success" %} class="alert alert-success"{% endif %}>{{ message }}</p>
+				{% endfor %}
+		</div>
+		{% endif %}
+	    <form class="register-form" action="/postsignup/" method="POST" id="Regform">
+	    {% csrf_token %}
+	      <input name="name" type="text" placeholder="Name"/>
+	      <input name="email" type="text" placeholder="Email"/>
+	      <input name="password" type="password" placeholder="Password"/>
+	      <input name="contact" type="text" placeholder="Contact"/>
+	      <button type="submit" form="Regform">Sign Up</button>
+	      <p class="message">Already registered? <a href="javascript:displayLogin()">Sign In</a></p>
+	    </form>
+	    <form class="login-form" action="/postsignIn/" method="POST" id="LoginForm">
+	    {% csrf_token %}
+	      <input type="email" placeholder="Email" name="email"/>
+	      <input type="password" placeholder="Password" name="password"/>
 
-      <button type="submit" form="LoginForm">Log In</button>
-      <p class="message">Not registered? <a href="javascript:displayRegister()">Create an account</a></p>
-    </form>
-  </div>
+	      <button type="submit" form="LoginForm">Log In</button>
+	      <p class="message">Not registered? <a href="javascript:displayRegister()">Create an account</a></p>
+	    </form>
+ 	</div>
 </div>
 <script type="text/javascript">
 	function displayLogin(){

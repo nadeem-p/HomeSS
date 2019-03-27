@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import auth
 from dashboard import views as d_views
 import pyrebase
+from django.contrib import messages
 
 config = {
     'apiKey': "AIzaSyAWjK69Bjgu89j4T1L-UnFc7f5XZUgzxxE",
@@ -52,6 +53,7 @@ def postsignup(request):
     }
 
     db.child("users").child(uid).child("details").set(data)
+    messages.success(request, 'Registration Successful!')
 
     return render(request, 'signIn.html')
 
