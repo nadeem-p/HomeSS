@@ -29,9 +29,9 @@ def home(request):
         data = {
             "status" : 0
         }
-    return render(request, 'dashboard.html', data)
+    return render(request, 'dashboard/dashboard.html', data)
 
 def profile(request):
     # need to add context dictionary for user data
     
-    return render(request, 'profile.html')
+    return render(request, 'dashboard/profile.html')

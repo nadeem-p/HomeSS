@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+</head>
+<body>
+<h3>This is the dashboard page. This will display the data of the sensors and some additional information.</h3>
+{% if status %}
+<table>
+	<tr>
+		<th>Temperature</th>
+		<th>Humidity</th>
+		<th>Motion Detected</th>
+	</tr>
+	<tr>
+		<td>{{ Temp }} &#8451;</td>
+		<td>{{ Humidity }} %</td>
+		<td>{{ Motion }}</td>
+	</tr>
+</table>
+{% endif %}
+</body>
+</html>

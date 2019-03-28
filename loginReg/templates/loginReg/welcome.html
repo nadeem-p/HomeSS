@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<style>
+		div{
+			position: absolute;
+			right: 10px;
+			top: 5px;
+		}
+	</style>
+</head>
+<body>
+{% csrf_token %}
+<h2>This is your dashboard!</h2>
+<h5>You are logged in with email : {{email}}</h2>
+<div>
+<button type="button" onclick="location.href='{% url 'logout' %}'">Logout</button>
+</div>
+</body>
+</html>
