@@ -20,9 +20,15 @@ def home(request):
     user = authentication.get_account_info(idToken)
     userid = user['users'][0]['localId']
     print(userid)
-    data = db.child("users").child(userid).child("CurrentReading").get()
-    print(dict(data.val()))
-    data = dict(data.val())
+    try:
+        data = db.child("users").child(userid).child("CurrentReading").get()
+        print(dict(data.val()))
+        data = dict(data.val())
+        data['status'] = 1
+    except:
+        data = {
+            "status" : 0
+        }
     return render(request, 'dashboard.html', data)
 
 def profile(request):

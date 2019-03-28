@@ -5,6 +5,7 @@
 </head>
 <body>
 <h3>This is the dashboard page. This will display the data of the sensors and some additional information.</h3>
+{% if status %}
 <table>
 	<tr>
 		<th>Temperature</th>
@@ -17,5 +18,6 @@
 		<td>{{ Motion }}</td>
 	</tr>
 </table>
+{% endif %}
 </body>
 </html>
