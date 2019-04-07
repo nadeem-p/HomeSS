@@ -1,23 +1,106 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Dashboard</title>
-</head>
-<body>
-<h3>This is the dashboard page. This will display the data of the sensors and some additional information.</h3>
+{% extends 'dashboard/base.html' %}
+{% block content %}
 {% if status %}
-<table>
-	<tr>
-		<th>Temperature</th>
-		<th>Humidity</th>
-		<th>Motion Detected</th>
-	</tr>
-	<tr>
-		<td>{{ Temp }} &#8451;</td>
-		<td>{{ Humidity }} %</td>
-		<td>{{ Motion }}</td>
-	</tr>
-</table>
-{% endif %}
-</body>
-</html>
+	<section>
+		<div class="cut cut-top"></div>
+		<div class="container">
+			<div class="row intro-tables">
+				<div class="col-md-4">
+					<div class="intro-table intro-table-first">
+						<h5 class="white heading">Temperature</h5>
+						<div class="owl-carousel owl-schedule bottom">
+							<div class="item">
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<h5 class="regular white">Expected </h5>
+									</div>
+									<div class="col-xs-6 text-right">
+										<h5 class="white">30</h5>
+									</div>
+								</div>
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<h5 class="regular white">Actual </h5>
+									</div>
+									<div class="col-xs-6 text-right">
+										<h5 class="white">{{ Temp }}</h5>
+									</div>
+								</div>
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<h5 class="regular white">Threshold</h5>
+									</div>
+									<div class="col-xs-6 text-right">
+										<h5 class="white">42</h5>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="intro-table intro-table-first">
+						<h5 class="white heading">Humidity</h5>
+						<div class="owl-carousel owl-schedule bottom">
+							<div class="item">
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<h5 class="regular white">Exected </h5>
+									</div>
+									<div class="col-xs-6 text-right">
+										<h5 class="white">21</h5>
+									</div>
+								</div>
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<h5 class="regular white">Actual </h5>
+									</div>
+									<div class="col-xs-6 text-right">
+										<h5 class="white">{{ Humidity }}</h5>
+									</div>
+								</div>
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<h5 class="regular white">Threshold</h5>
+									</div>
+									<div class="col-xs-6 text-right">
+										<h5 class="white">33</h5>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="intro-table intro-table-first">
+						<h5 class="white heading">Motion Detected </h5>
+						<div class="owl-carousel owl-schedule bottom">
+							<div class="item">
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<h5 class="regular white">Last on </h5>
+									</div>
+									<div class="col-xs-6 text-right">
+										<h5 class="white">{{ Motion }}</h5>
+									</div>
+								</div>
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<h5 class="regular white">Threshold</h5>
+									</div>
+									<div class="col-xs-6 text-right">
+										<h5 class="white">55</h5>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	{% endif %}
+{% endblock content %}

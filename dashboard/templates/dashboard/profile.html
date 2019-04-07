@@ -1,61 +1,10 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-
-<link href="css/profile.css" rel="stylesheet">
-<nav class="navbar">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#"><img src="img/logo.png" data-active-url="img/logo-active.png" alt=""></a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right main-nav">
-                    <li><a href="#intro">Dashboard</a></li>
-                    <li><a href="#services">Add Knowns</a></li>
-                    <li><a href="profile.html">profile</a></li>
-                    <li><a href="#pricing">Settings</a></li>
-                    
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-<div class="container">
-	<div class="row">
-		<div class="col-lg-3 col-sm-6">
-
-            <div class="card hovercard">
-                <div class="cardheader">
-
-                </div>
-                <div class="avatar">
-                    <img alt="" src="http://lorempixel.com/100/100/people/9/">
-                </div>
-                <div class="info">
-                    <div class="title">
-                        <a>Home Owner</a>
-                    </div>
-                    <div class="desc">Name: Khan Mohammad Aamir Khalid Ahmed</div>
-                    <div class="desc">Addres: 105, 7/B, Mansarovar Complex, Sector 34, Kamothe, Navi Mumbai. 410209</div>
-                    <div class="desc">Email: Khan85284@gmail.com</div>
-                    <div class="desc">Contact: 9768274850</div>
-                    <div class="desc"></div>
-                </div>
-                
-            </div>
-
-        </div>
-
-	</div>
-</div>
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<form action="/uploadPics/" method="POST" enctype="multipart/form-data" id="uploadPicsForm">
+{% csrf_token %}
+	<input type="text" name="personName" id="personName">
+	<input type="file" id="facialimgvid" name="facialimgvid" accept="video/*">
+	<button type="submit" form="uploadPicsForm">Upload Pics from this video</button>
+</form>
+{% endblock content %}

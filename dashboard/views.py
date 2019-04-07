@@ -33,5 +33,15 @@ def home(request):
 
 def profile(request):
     # need to add context dictionary for user data
-    
     return render(request, 'dashboard/profile.html')
+
+def uploadPics(request):
+    if request.method == 'POST' and request.FILES['facialimgvid']:
+        videoFile = request.FILES['facialimgvid']
+        name = request.POST.get('personName')
+
+        #do video slicing and get pictures.
+
+        storage = firebase.storage()
+
+    pass
