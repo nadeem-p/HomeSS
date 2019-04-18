@@ -31,9 +31,22 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/fonts/font-awesome-4.1.0/css/font-awesome.min.css' %}">
 	<!-- Main style -->
 	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/cardio.css' %}">
+	<style type="text/css">
+		.formInputt{
+			border: 2px solid black;
+			padding: 10px;
+			background-color: yellow;
+		}
+		.ImageName{
+			align-content: center;
+		}
+		.ImageName img{
+			border: 1px solid black;
+		}
+	</style>
 </head>
 
-<body>
+<body style="scroll-snap-type:y mandatory; overflow-y: scroll;">
 	<div class="preloader">
 		<img src="{% static 'dashboard/img/loader.gif' %}" alt="Preloader image">
 	</div>
@@ -52,10 +65,10 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right main-nav">
-					<li><a href="#intro">Dashboard</a></li>
+					<li><a href="{% url 'Dash-home' %}">Dashboard</a></li>
 					<li><a href="#services">Add Knowns</a></li>
 					<li><a href='{% url 'profileAdd' %}'>Profile</a></li>
-					<li><a href="test.html">Settings</a></li>
+					<li><a href="{% url 'Sign In' %}">Log Out</a></li>
 					
 				</ul>
 			</div>
@@ -63,6 +76,7 @@
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
+	<div class="scrollOne">
 	<header id="intro">
 	<div class="container">
 		<div class="table">
@@ -79,8 +93,14 @@
 		</div>
 	</div>
 	</header>
+	</div>
+	<div class="scrollTwo">
+		<section>
+			<div class="cut cut-top"></div>
 	{% block content %}
 	{% endblock %}
+		</section>
+	</div>
 	
 	<script src="{% static 'dashboard/js/jquery-1.11.1.min.js' %}"></script>
 	<script src="{% static 'dashboard/js/owl.carousel.min.js' %}"></script>

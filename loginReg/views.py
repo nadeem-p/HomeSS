@@ -16,6 +16,7 @@ config = {
 firebase = pyrebase.initialize_app(config)
 authentication = firebase.auth()
 db = firebase.database()
+storage = firebase.storage()
 
 def signIn(request):
     return render(request, 'loginReg/signIn.html')
@@ -43,7 +44,6 @@ def postsignup(request):
     email = request.POST.get('email')
     pwd = request.POST.get('password')
     contact = request.POST.get('contact')
-
     user = authentication.create_user_with_email_and_password(email, pwd)
     uid = user["localId"]
     print(uid)
@@ -51,7 +51,9 @@ def postsignup(request):
         "Name": name,
         "Contact": contact
     }
-
+    if request.method == 'POST' and request.FILES['profimage']:
+        profimage = request.FILES['profimage']
+        storage.child("users").child(uid).child(str(name.lower())+'.jpg').put(profimage)
     db.child("users").child(uid).child("details").set(data)
     messages.success(request, 'Registration Successful!')
 
